@@ -1,0 +1,222 @@
+{
+  "version": 3,
+  "targets": {
+    "net9.0": {
+      "Microsoft.AspNetCore.OpenApi/9.0.7": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.OpenApi": "1.6.17"
+        },
+        "compile": {
+          "lib/net9.0/Microsoft.AspNetCore.OpenApi.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.AspNetCore.OpenApi.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Microsoft.OpenApi/1.6.17": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.OpenApi.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.OpenApi.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "AirbnbClone.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "AirbnbClone.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/AirbnbClone.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AirbnbClone.Application.dll": {}
+        }
+      },
+      "AirbnbClone.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/AirbnbClone.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AirbnbClone.Domain.dll": {}
+        }
+      },
+      "AirbnbClone.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "AirbnbClone.Application": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/AirbnbClone.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AirbnbClone.Infrastructure.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Microsoft.AspNetCore.OpenApi/9.0.7": {
+      "sha512": "8aG0mkgmA38IDJ0ca5HIpdexKjHXIh0z1kIdw5WyM6CrD4+CEt97UgSwBBBCHG6QQKV0hj2mfkwtEcqrJBcu8g==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.openapi/9.0.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net9.0/Microsoft.AspNetCore.OpenApi.dll",
+        "lib/net9.0/Microsoft.AspNetCore.OpenApi.xml",
+        "microsoft.aspnetcore.openapi.9.0.7.nupkg.sha512",
+        "microsoft.aspnetcore.openapi.nuspec"
+      ]
+    },
+    "Microsoft.OpenApi/1.6.17": {
+      "sha512": "Le+kehlmrlQfuDFUt1zZ2dVwrhFQtKREdKBo+rexOwaCoYP0/qpgT9tLxCsZjsgR5Itk1UKPcbgO+FyaNid/bA==",
+      "type": "package",
+      "path": "microsoft.openapi/1.6.17",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/netstandard2.0/Microsoft.OpenApi.dll",
+        "lib/netstandard2.0/Microsoft.OpenApi.pdb",
+        "lib/netstandard2.0/Microsoft.OpenApi.xml",
+        "microsoft.openapi.1.6.17.nupkg.sha512",
+        "microsoft.openapi.nuspec"
+      ]
+    },
+    "AirbnbClone.Application/1.0.0": {
+      "type": "project",
+      "path": "../AirbnbClone.Application/AirbnbClone.Application.csproj",
+      "msbuildProject": "../AirbnbClone.Application/AirbnbClone.Application.csproj"
+    },
+    "AirbnbClone.Domain/1.0.0": {
+      "type": "project",
+      "path": "../AirbnbClone.Domain/AirbnbClone.Domain.csproj",
+      "msbuildProject": "../AirbnbClone.Domain/AirbnbClone.Domain.csproj"
+    },
+    "AirbnbClone.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../AirbnbClone.Infrastructure/AirbnbClone.Infrastructure.csproj",
+      "msbuildProject": "../AirbnbClone.Infrastructure/AirbnbClone.Infrastructure.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net9.0": [
+      "AirbnbClone.Application >= 1.0.0",
+      "AirbnbClone.Infrastructure >= 1.0.0",
+      "Microsoft.AspNetCore.OpenApi >= 9.0.7"
+    ]
+  },
+  "packageFolders": {
+    "/Users/masibongemasinga/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/Users/masibongemasinga/Documents/Projects/AirbnbClone/AirbnbClone.Api/AirbnbClone.Api.csproj",
+      "projectName": "AirbnbClone.Api",
+      "projectPath": "/Users/masibongemasinga/Documents/Projects/AirbnbClone/AirbnbClone.Api/AirbnbClone.Api.csproj",
+      "packagesPath": "/Users/masibongemasinga/.nuget/packages/",
+      "outputPath": "/Users/masibongemasinga/Documents/Projects/AirbnbClone/AirbnbClone.Api/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/Users/masibongemasinga/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net9.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "projectReferences": {
+            "/Users/masibongemasinga/Documents/Projects/AirbnbClone/AirbnbClone.Application/AirbnbClone.Application.csproj": {
+              "projectPath": "/Users/masibongemasinga/Documents/Projects/AirbnbClone/AirbnbClone.Application/AirbnbClone.Application.csproj"
+            },
+            "/Users/masibongemasinga/Documents/Projects/AirbnbClone/AirbnbClone.Infrastructure/AirbnbClone.Infrastructure.csproj": {
+              "projectPath": "/Users/masibongemasinga/Documents/Projects/AirbnbClone/AirbnbClone.Infrastructure/AirbnbClone.Infrastructure.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "10.0.100"
+    },
+    "frameworks": {
+      "net9.0": {
+        "targetAlias": "net9.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.OpenApi": {
+            "target": "Package",
+            "version": "[9.0.7, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[9.0.11, 9.0.11]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.osx-arm64",
+            "version": "[9.0.11, 9.0.11]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[9.0.11, 9.0.11]"
+          }
+        ],
+        "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/Users/masibongemasinga/.dotnet/sdk/10.0.100/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
