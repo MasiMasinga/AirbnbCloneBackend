@@ -4,6 +4,37 @@
     <ProjectReference Include="..\AirbnbClone.Domain\AirbnbClone.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Authentication\DTOs\" />
+    <Folder Include="Features\Authentication\Interfaces\" />
+    <Folder Include="Features\Authentication\Services\" />
+    <Folder Include="Features\Authentication\Validators\" />
+    <Folder Include="Features\Booking\DTOs\" />
+    <Folder Include="Features\Booking\Interfaces\" />
+    <Folder Include="Features\Booking\Services\" />
+    <Folder Include="Features\Booking\Validators\" />
+    <Folder Include="Features\Payment\DTOs\" />
+    <Folder Include="Features\Payment\Interfaces\" />
+    <Folder Include="Features\Payment\Services\" />
+    <Folder Include="Features\Payment\Validators\" />
+    <Folder Include="Features\Review\DTOs\" />
+    <Folder Include="Features\Review\Interfaces\" />
+    <Folder Include="Features\Review\Services\" />
+    <Folder Include="Features\Review\Validators\" />
+    <Folder Include="Features\Support\DTOs\" />
+    <Folder Include="Features\Support\Interfaces\" />
+    <Folder Include="Features\Support\Services\" />
+    <Folder Include="Features\Support\Validators\" />
+    <Folder Include="Features\User\DTOs\" />
+    <Folder Include="Features\User\Interfaces\" />
+    <Folder Include="Features\User\Services\" />
+    <Folder Include="Features\User\Validators\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.1.1" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
