@@ -9,7 +9,7 @@ public static partial class DbFunctions
 
         public const string GetById =
             """
-            SELECT id, name AS title, description, pricing
+            SELECT *
             FROM listing_get_by_id(@listing_id);
             """;
 

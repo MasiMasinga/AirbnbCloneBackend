@@ -4,7 +4,7 @@ Date: 2026-07-28
 Description: This script creates the User Table
 */
 
-CREATE TABLE user (
+CREATE TABLE users (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_role VARCHAR(20) NOT NULL,
     title VARCHAR(100) NOT NULL,

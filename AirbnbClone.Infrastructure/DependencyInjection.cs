@@ -1,5 +1,6 @@
 using System.Data;
 using AirbnbClone.Domain.Interfaces;
+using AirbnbClone.Infrastructure.Database.TypeHandlers;
 using AirbnbClone.Infrastructure.Repositories;
 using Dapper;
 using Microsoft.Extensions.Configuration;
@@ -13,6 +14,7 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         DefaultTypeMap.MatchNamesWithUnderscores = true;
+        SqlMapper.AddTypeHandler(new DateOnlyTypeHandler());
 
         services.AddScoped<IDbConnection>(_ =>
         {

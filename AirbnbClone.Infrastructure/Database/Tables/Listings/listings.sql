@@ -8,7 +8,6 @@ CREATE TABLE listings (
     id SERIAL PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
     description VARCHAR(140) NOT NULL,
-    amenities VARCHAR(140) NOT NULL,
     house_rules VARCHAR(100) NOT NULL,
     pricing NUMERIC(12, 2) DEFAULT 0.00 NOT NULL,
     availability BOOLEAN NULL,
@@ -16,13 +15,8 @@ CREATE TABLE listings (
     bath_count INTEGER NOT NULL,
     property_type VARCHAR(20) NOT NULL,
     address VARCHAR(100) NOT NULL,
-    location VARCHAR(50) NOT NULL,
-    country VARCHAR(50) NOT NULL,
-    start_date DATE NOT NULL,
-    end_date DATE NOT NULL,
-    photo TEXT NOT NULL,
+    location_id INTEGER NOT NULL,
     user_id UUID NOT NULL,
-    review_id VARCHAR(100) NOT NULL,
     created_at DATE DEFAULT CURRENT_DATE,
     updated_at TIMESTAMPTZ DEFAULT clock_timestamp() NOT NULL
 );

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AirbnbClone.Api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("Api/[controller]")]
 public class ListingsController : ControllerBase
 {
     private readonly IListingService _listingService;
