@@ -8,6 +8,5 @@ public static partial class DbFunctions
         public const string GuestSignUp = "...";
         public const string HostLogin = "...";
         public const string HostSignUp = "...";
-        public const string ForgotPassword = "...";
     }
 }
