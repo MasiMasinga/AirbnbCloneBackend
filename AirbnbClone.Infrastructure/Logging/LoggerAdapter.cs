@@ -15,6 +15,6 @@ public class LoggerAdapter<T> : ILoggerAdapter<T>
     public void LogWarning(string message, params object[] args) =>
         _logger.LogWarning(message, args);
 
-    public void LogError(Exception ex, string message, params object[] args) =>
+    public void LogError(string ex, string message, params object[] args) =>
         _logger.LogError(ex, message, args);
 }
