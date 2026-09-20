@@ -6,6 +6,8 @@ using AirbnbClone.Application.Features.Authentication.Validators;
 using AirbnbClone.Application.Features.Listings.Interfaces;
 using AirbnbClone.Application.Features.Listings.Services;
 using AirbnbClone.Application.Features.Listings.Validators;
+using AirbnbClone.Application.Features.User.Interfaces;
+using AirbnbClone.Application.Features.User.Services;
 using AirbnbClone.Infrastructure;
 using AirbnbClone.Infrastructure.Logging;
 using FluentValidation;
@@ -15,6 +17,7 @@ using Microsoft.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -64,13 +67,13 @@ builder.Services.AddCors(options =>
 builder.Services.AddSingleton(typeof(ILoggerAdapter<>), typeof(LoggerAdapter<>));
 builder.Services.AddScoped<IListingService, ListingService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddValidatorsFromAssemblyContaining<CreateListingValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateUserValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<LoginUserValidator>();
 
 builder.Services.AddOpenApi();
-builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 

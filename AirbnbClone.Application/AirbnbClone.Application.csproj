@@ -21,10 +21,6 @@
     <Folder Include="Features\Support\Interfaces\" />
     <Folder Include="Features\Support\Services\" />
     <Folder Include="Features\Support\Validators\" />
-    <Folder Include="Features\User\DTOs\" />
-    <Folder Include="Features\User\Interfaces\" />
-    <Folder Include="Features\User\Services\" />
-    <Folder Include="Features\User\Validators\" />
   </ItemGroup>
 
   <ItemGroup>

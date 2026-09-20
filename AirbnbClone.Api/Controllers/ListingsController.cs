@@ -2,12 +2,14 @@ using AirbnbClone.Application.Common.Abstractions;
 using AirbnbClone.Application.Features.Listings.DTOs;
 using AirbnbClone.Application.Features.Listings.Interfaces;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AirbnbClone.Api.Controllers;
 
 [ApiController]
-[Route("Api/[controller]")]
+[Route("api/[controller]")]
+[Authorize]
 public class ListingsController : ControllerBase
 {
     private readonly IListingService _listingService;

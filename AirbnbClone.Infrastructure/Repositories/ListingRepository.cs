@@ -24,7 +24,9 @@ public class ListingRepository : IListingRepository
     public async Task<Listings?> GetByIdAsync(int id, CancellationToken ct = default)
     {
         return await _connection.QuerySingleOrDefaultAsync<Listings>(
-            new CommandDefinition(DbFunctions.Listings.GetById, new { listing_id = id }, cancellationToken: ct));
+            new CommandDefinition(DbFunctions.Listings.GetById, 
+                new { listing_id = id }, 
+                cancellationToken: ct));
     }
 
     public async Task<int> CreateAsync(Listings listing, CancellationToken ct = default)
@@ -78,6 +80,8 @@ public class ListingRepository : IListingRepository
     public async Task DeleteAsync(int id, CancellationToken ct = default)
     {
         await _connection.ExecuteAsync(
-            new CommandDefinition(DbFunctions.Listings.Delete, new { listing_id = id }, cancellationToken: ct));
+            new CommandDefinition(DbFunctions.Listings.Delete, 
+                new { listing_id = id }, 
+                cancellationToken: ct));
     }
 }

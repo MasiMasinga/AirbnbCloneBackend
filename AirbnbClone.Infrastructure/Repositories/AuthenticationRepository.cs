@@ -15,7 +15,7 @@ public class AuthenticationRepository : IAuthenticationRepository
         _connection = connection;
     }
     
-     public async Task<Guid> SignUp(User user, CancellationToken ct = default)
+    public async Task<Guid> SignUp(User user, CancellationToken ct = default)
     {
         return await _connection.ExecuteScalarAsync<Guid>(
             new CommandDefinition(DbFunctions.Authentication.SignUp, new
@@ -33,7 +33,7 @@ public class AuthenticationRepository : IAuthenticationRepository
 
     public async Task Login(User user, CancellationToken ct = default)
     {
-        await _connection.ExecuteAsync(
+         await _connection.ExecuteAsync(
             new CommandDefinition(DbFunctions.Authentication.Login, new
             {
                 auth_user_email_address = user.EmailAddress,
