@@ -34,14 +34,10 @@ public class AuthenticationService : IAuthenticationService
 
             var newUser = new UserEntity
             {
-                Title = dto.Title,
                 UserRole = dto.UserRole,
                 FirstName = dto.FirstName,
-                Surname = dto.Surname,
                 EmailAddress = dto.EmailAddress.Trim().ToLowerInvariant(),
                 Password = dto.Password,
-                Bio = dto.Bio,
-                Photo = dto.Photo,
             };
             
             newUser.Password = _passwordHasher.HashPassword(newUser, dto.Password);
@@ -53,13 +49,9 @@ public class AuthenticationService : IAuthenticationService
             return new UserDto
             {
                 Id = newUser.Id,
-                Title = newUser.Title,
                 UserRole = newUser.UserRole,
                 FirstName = newUser.FirstName,
-                Surname = newUser.Surname,
                 EmailAddress = newUser.EmailAddress,
-                Bio = newUser.Bio,
-                Photo = newUser.Photo,
             };
         }
         catch (Exception ex)
@@ -100,6 +92,7 @@ public class AuthenticationService : IAuthenticationService
                 FirstName = existingUser.FirstName,
                 Surname = existingUser.Surname,
                 EmailAddress = existingUser.EmailAddress,
+                UserRole = existingUser.UserRole,
                 Access = accessToken
             };
         }
