@@ -15,73 +15,89 @@ public class ListingRepository : IListingRepository
         _connection = connection;
     }
 
-    public async Task<IEnumerable<Listings>> GetAllAsync(CancellationToken ct = default)
+    public Task<IEnumerable<Listings>> GetAllAsync(CancellationToken ct = default)
     {
-        return await _connection.QueryAsync<Listings>(
-            new CommandDefinition(DbFunctions.Listings.GetAll, cancellationToken: ct));
-    }
-
-    public async Task<Listings?> GetByIdAsync(int id, CancellationToken ct = default)
-    {
-        return await _connection.QuerySingleOrDefaultAsync<Listings>(
-            new CommandDefinition(DbFunctions.Listings.GetById, 
-                new { listing_id = id }, 
+        return _connection.QueryAsync<Listings>(
+            new CommandDefinition(
+                DbFunctions.Listings.GetAll,
                 cancellationToken: ct));
     }
 
-    public async Task<int> CreateAsync(Listings listing, CancellationToken ct = default)
+    public Task<Listings?> GetByIdAsync(int id, CancellationToken ct = default)
     {
-        return await _connection.ExecuteScalarAsync<int>(
-            new CommandDefinition(DbFunctions.Listings.Create, new
-            {
-                listing_title = listing.Title,
-                listing_description = listing.Description,
-                listing_amenities = listing.Amenities,
-                listing_house_rules = listing.HouseRules,
-                listing_pricing = listing.Pricing,
-                listing_availability = listing.Availability,
-                listing_bed_count = listing.BedCount,
-                listing_bath_count = listing.BathCount,
-                listing_property_type = listing.PropertyType,
-                listing_address = listing.Address,
-                listing_location = listing.Location,
-                listing_country = listing.Country,
-                listing_start_date = listing.StartDate,
-                listing_end_date = listing.EndDate,
-                listing_photo = listing.Photo,
-                listing_user_id = listing.UserId
-            }, cancellationToken: ct));
+        return _connection.QuerySingleOrDefaultAsync<Listings>(
+            new CommandDefinition(
+                DbFunctions.Listings.GetById,
+                new
+                {
+                    listing_id = id
+                },
+                cancellationToken: ct));
     }
 
-    public async Task UpdateAsync(Listings listing, CancellationToken ct = default)
+    public Task<int> CreateAsync(Listings listing, CancellationToken ct = default)
     {
-        await _connection.ExecuteAsync(
-            new CommandDefinition(DbFunctions.Listings.Update, new
-            {
-                listing_id = listing.Id,
-                listing_title = listing.Title,
-                listing_description = listing.Description,
-                listing_amenities = listing.Amenities,
-                listing_house_rules = listing.HouseRules,
-                listing_pricing = listing.Pricing,
-                listing_availability = listing.Availability,
-                listing_bed_count = listing.BedCount,
-                listing_bath_count = listing.BathCount,
-                listing_property_type = listing.PropertyType,
-                listing_address = listing.Address,
-                listing_location = listing.Location,
-                listing_country = listing.Country,
-                listing_start_date = listing.StartDate,
-                listing_end_date = listing.EndDate,
-                listing_photo = listing.Photo
-            }, cancellationToken: ct));
+        return _connection.ExecuteScalarAsync<int>(
+            new CommandDefinition(
+                DbFunctions.Listings.Create,
+                new
+                {
+                    listing_title = listing.Title,
+                    listing_description = listing.Description,
+                    listing_amenities = listing.Amenities,
+                    listing_house_rules = listing.HouseRules,
+                    listing_pricing = listing.Pricing,
+                    listing_availability = listing.Availability,
+                    listing_bed_count = listing.BedCount,
+                    listing_bath_count = listing.BathCount,
+                    listing_property_type = listing.PropertyType,
+                    listing_address = listing.Address,
+                    listing_location = listing.Location,
+                    listing_country = listing.Country,
+                    listing_start_date = listing.StartDate,
+                    listing_end_date = listing.EndDate,
+                    listing_photo = listing.Photo,
+                    listing_user_id = listing.UserId
+                },
+                cancellationToken: ct));
     }
 
-    public async Task DeleteAsync(int id, CancellationToken ct = default)
+    public Task UpdateAsync(Listings listing, CancellationToken ct = default)
     {
-        await _connection.ExecuteAsync(
-            new CommandDefinition(DbFunctions.Listings.Delete, 
-                new { listing_id = id }, 
+        return _connection.ExecuteAsync(
+            new CommandDefinition(
+                DbFunctions.Listings.Update,
+                new
+                {
+                    listing_id = listing.Id,
+                    listing_title = listing.Title,
+                    listing_description = listing.Description,
+                    listing_amenities = listing.Amenities,
+                    listing_house_rules = listing.HouseRules,
+                    listing_pricing = listing.Pricing,
+                    listing_availability = listing.Availability,
+                    listing_bed_count = listing.BedCount,
+                    listing_bath_count = listing.BathCount,
+                    listing_property_type = listing.PropertyType,
+                    listing_address = listing.Address,
+                    listing_location = listing.Location,
+                    listing_country = listing.Country,
+                    listing_start_date = listing.StartDate,
+                    listing_end_date = listing.EndDate,
+                    listing_photo = listing.Photo
+                },
+                cancellationToken: ct));
+    }
+
+    public Task DeleteAsync(int id, CancellationToken ct = default)
+    {
+        return _connection.ExecuteAsync(
+            new CommandDefinition(
+                DbFunctions.Listings.Delete,
+                new
+                {
+                    listing_id = id
+                },
                 cancellationToken: ct));
     }
 }

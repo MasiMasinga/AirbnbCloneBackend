@@ -14,11 +14,12 @@ public class AuthenticationRepository : IAuthenticationRepository
     {
         _connection = connection;
     }
-    
-    public async Task<Guid> SignUp(User user, CancellationToken ct = default)
+
+    public Task<Guid> SignUp(User user, CancellationToken ct = default)
     {
-        return await _connection.ExecuteScalarAsync<Guid>(
-            new CommandDefinition(DbFunctions.Authentication.SignUp, new
+        return _connection.ExecuteScalarAsync<Guid>(
+            new CommandDefinition(DbFunctions.Authentication.SignUp,
+            new
             {
                 auth_user_role = user.UserRole,
                 auth_user_title = user.Title,
@@ -28,25 +29,31 @@ public class AuthenticationRepository : IAuthenticationRepository
                 auth_user_bio = user.Bio,
                 auth_user_photo = user.Photo,
                 auth_user_password_hash = user.Password
-            }, cancellationToken: ct));
+            },
+            cancellationToken: ct));
     }
 
-    public async Task Login(User user, CancellationToken ct = default)
+    public Task Login(User user, CancellationToken ct = default)
     {
-         await _connection.ExecuteAsync(
-            new CommandDefinition(DbFunctions.Authentication.Login, new
+        return _connection.ExecuteAsync(
+           new CommandDefinition(
+            DbFunctions.Authentication.Login,
+            new
             {
                 auth_user_email_address = user.EmailAddress,
-            }, cancellationToken: ct));
+            },
+            cancellationToken: ct));
     }
 
-    public async Task<User?> CheckExistingUser(string emailAdress, CancellationToken ct = default)
+    public Task<User?> CheckExistingUser(string emailAdress, CancellationToken ct = default)
     {
-        return await _connection.QuerySingleOrDefaultAsync<User>(
-            new CommandDefinition(DbFunctions.Authentication.CheckExistingUser, 
-                new 
-                {
-                    auth_user_email = emailAdress 
-                }, cancellationToken: ct));
+        return _connection.QuerySingleOrDefaultAsync<User>(
+           new CommandDefinition(
+               DbFunctions.Authentication.CheckExistingUser,
+               new
+               {
+                   auth_user_email = emailAdress
+               },
+               cancellationToken: ct));
     }
 }

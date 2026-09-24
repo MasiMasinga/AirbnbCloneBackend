@@ -1,6 +1,6 @@
-namespace AirbnbClone.Domain.Entities;
+namespace AirbnbClone.Application.Features.Booking.DTOs;
 
-public class Booking
+public class UpdateBookingDto
 {
     public int Id { get; set; }
     public Guid UserId { get; set; }
@@ -9,6 +9,4 @@ public class Booking
     public DateOnly EndDate { get; set; }
     public decimal Amount { get; set; }
     public int NumberOfGuests { get; set; }
-    public DateOnly CreatedAt { get; set; }
-    public DateOnly UpdatedAt { get; set; }
 }

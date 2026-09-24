@@ -17,8 +17,8 @@ public static partial class DbFunctions
                 @auth_user_password_hash
             );
             """;
-        
-        public const string Login = 
+
+        public const string Login =
             "SELECT login_user(@auth_user_email);";
 
         public const string CheckExistingUser =

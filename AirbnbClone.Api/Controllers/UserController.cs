@@ -18,7 +18,7 @@ public class UserController: ControllerBase
 
     public UserController(
         IUserService userService,
-        IValidator<UpdateUserDto> updateValidator, 
+        IValidator<UpdateUserDto> updateValidator,
         ILoggerAdapter<UserController> logger)
     {
         _userService = userService;
@@ -31,7 +31,7 @@ public class UserController: ControllerBase
     public async Task<IActionResult> GetById(Guid id, CancellationToken ct)
     {
         var userDetails = await _userService.GetUserDetails(id, ct);
-        
+
         if (userDetails is null)
         {
             _logger.LogWarning("User {UserId} not found", id);

@@ -8,6 +8,9 @@ using AirbnbClone.Application.Features.Listings.Services;
 using AirbnbClone.Application.Features.Listings.Validators;
 using AirbnbClone.Application.Features.User.Interfaces;
 using AirbnbClone.Application.Features.User.Services;
+using AirbnbClone.Application.Features.Booking.Services;
+using AirbnbClone.Application.Features.Booking.Interfaces;
+using AirbnbClone.Application.Features.Booking.Validators;
 using AirbnbClone.Infrastructure;
 using AirbnbClone.Infrastructure.Logging;
 using FluentValidation;
@@ -68,10 +71,13 @@ builder.Services.AddSingleton(typeof(ILoggerAdapter<>), typeof(LoggerAdapter<>))
 builder.Services.AddScoped<IListingService, ListingService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IBookingService, BookingService>();
 
 builder.Services.AddValidatorsFromAssemblyContaining<CreateListingValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateUserValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<LoginUserValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateBookingValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<UpdateBookingValidator>();
 
 builder.Services.AddOpenApi();
 

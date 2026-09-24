@@ -25,7 +25,7 @@ public class AuthenticationService : IAuthenticationService
         _configuration = configuration;
         _logger = logger;
     }
-    
+
     public async Task<UserDto> SignUp(CreateUserDto dto, CancellationToken ct = default)
     {
         try
@@ -39,9 +39,9 @@ public class AuthenticationService : IAuthenticationService
                 EmailAddress = dto.EmailAddress.Trim().ToLowerInvariant(),
                 Password = dto.Password,
             };
-            
+
             newUser.Password = _passwordHasher.HashPassword(newUser, dto.Password);
-            
+
             newUser.Id = await _authenticationRepository.SignUp(newUser, ct);
 
             _logger.LogInformation("Created user with id {UserId}", newUser.Id);
@@ -60,13 +60,13 @@ public class AuthenticationService : IAuthenticationService
             throw;
         }
     }
-    
+
     public async Task<UserDto> Login(LoginUserDto dto, CancellationToken ct = default)
     {
         try
         {
             _logger.LogInformation("Login user {EmailAddress}", dto.EmailAddress);
-            
+
             var identifier = dto.EmailAddress.Trim();
             var normalized = identifier.ToLowerInvariant();
 
@@ -83,7 +83,7 @@ public class AuthenticationService : IAuthenticationService
             {
                 throw new Exception("Invalid email/username or password.");
             }
-            
+
             var accessToken = JwtTokenHelper.GenerateJwtAccessToken(_configuration, existingUser);
 
             return new UserDto

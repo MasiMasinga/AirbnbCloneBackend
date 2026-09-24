@@ -18,7 +18,7 @@ public class AuthenticationController : ControllerBase
 
     public AuthenticationController(
         IAuthenticationService authenticationService,
-        IValidator<CreateUserDto> createValidator, 
+        IValidator<CreateUserDto> createValidator,
         IValidator<LoginUserDto> loginValidator,
         ILoggerAdapter<AuthenticationController> logger)
     {
@@ -36,7 +36,7 @@ public class AuthenticationController : ControllerBase
         {
             return BadRequest(new { message = "Request body is required." });
         }
-        
+
         try
         {
             var validationResult = await _createValidator.ValidateAsync(dto, ct);
@@ -48,7 +48,7 @@ public class AuthenticationController : ControllerBase
 
             var user = await _authenticationService.SignUp(dto, ct);
             _logger.LogInformation("Created user {ListingId}", user.Id);
-            
+
             return StatusCode(StatusCodes.Status201Created, user);
         }
         catch (Exception ex)
@@ -56,7 +56,7 @@ public class AuthenticationController : ControllerBase
             return BadRequest(new { message = ex.Message });
         }
     }
-    
+
     [HttpPost("login")]
     [AllowAnonymous]
     public async Task<IActionResult> Login(LoginUserDto dto, CancellationToken ct)
@@ -65,7 +65,7 @@ public class AuthenticationController : ControllerBase
         {
             return BadRequest(new { message = "Request body is required." });
         }
-        
+
         try
         {
             var validationResult = await _loginValidator.ValidateAsync(dto, ct);
@@ -77,7 +77,7 @@ public class AuthenticationController : ControllerBase
 
             var user = await _authenticationService.Login(dto, ct);
             _logger.LogInformation("Logged in user {UserId}", user.Id);
-            
+
             return StatusCode(StatusCodes.Status200OK, user);
         }
         catch (Exception ex)

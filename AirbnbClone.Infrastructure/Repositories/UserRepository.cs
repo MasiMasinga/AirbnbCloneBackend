@@ -15,21 +15,21 @@ public class UserRepository : IUserRepository
         _connection = connection;
     }
 
-    public async Task<User?> GetByIdAsync(Guid id, CancellationToken ct = default)
+    public Task<User?> GetByIdAsync(Guid id, CancellationToken ct = default)
     {
-        return await _connection.QuerySingleOrDefaultAsync<User>(
+        return _connection.QuerySingleOrDefaultAsync<User>(
             new CommandDefinition(
-                DbFunctions.Users.GetUserDetails, 
-                new 
-                { 
+                DbFunctions.Users.GetUserDetails,
+                new
+                {
                     Id = id,
-                }, 
+                },
                 cancellationToken: ct));
     }
 
-    public async Task<bool> UpdateAsync(UserUpdate update, Guid id, CancellationToken ct = default)
+    public Task<bool> UpdateAsync(UserUpdate update, Guid id, CancellationToken ct = default)
     {
-        return await _connection.ExecuteScalarAsync<bool>(
+        return _connection.ExecuteScalarAsync<bool>(
             new CommandDefinition(
                 DbFunctions.Users.UpdateUserDetails,
                 new
@@ -46,13 +46,16 @@ public class UserRepository : IUserRepository
                 },
                 cancellationToken: ct));
     }
-    
-    public async Task<bool> DeleteAsync( Guid id, CancellationToken ct = default)
+
+    public Task<bool> DeleteAsync(Guid id, CancellationToken ct = default)
     {
-        return await _connection.ExecuteScalarAsync<bool>(
+        return _connection.ExecuteScalarAsync<bool>(
             new CommandDefinition(
                 DbFunctions.Users.DeleteUser,
-                new { Id = id },
+                new
+                {
+                    Id = id
+                },
                 cancellationToken: ct));
     }
 }

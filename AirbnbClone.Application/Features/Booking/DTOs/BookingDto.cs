@@ -1,6 +1,6 @@
-namespace AirbnbClone.Domain.Entities;
+namespace AirbnbClone.Application.Features.Booking.DTOs;
 
-public class Booking
+public class BookingDto
 {
     public int Id { get; set; }
     public Guid UserId { get; set; }

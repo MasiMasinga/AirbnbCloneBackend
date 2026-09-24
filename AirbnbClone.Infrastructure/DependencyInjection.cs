@@ -1,18 +1,18 @@
 using System.Data;
+using Npgsql;
+using Dapper;
 using AirbnbClone.Domain.Interfaces;
 using AirbnbClone.Infrastructure.Database.TypeHandlers;
 using AirbnbClone.Infrastructure.Repositories;
-using Dapper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Npgsql;
 
 namespace AirbnbClone.Infrastructure;
 
 public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(
-        this IServiceCollection services, 
+        this IServiceCollection services,
         IConfiguration configuration)
     {
         DefaultTypeMap.MatchNamesWithUnderscores = true;
@@ -29,6 +29,7 @@ public static class DependencyInjection
         services.AddScoped<IListingRepository, ListingRepository>();
         services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IBookingRepository, BookingRepository>();
 
         return services;
     }

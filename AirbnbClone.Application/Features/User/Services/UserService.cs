@@ -36,7 +36,7 @@ public class UserService : IUserService
 
         return MapToDto(user);
     }
-    
+
     public async Task<bool> UpdateUserDetails(UpdateUserDto dto, Guid id, CancellationToken ct = default)
     {
         _logger.LogInformation("Updating user with id {UserId}", id);
@@ -66,7 +66,7 @@ public class UserService : IUserService
         _logger.LogInformation("Updated user with id {UserId}", id);
         return updated;
     }
-    
+
     public async Task<bool> DeleteUser(Guid id, CancellationToken ct = default)
     {
         _logger.LogInformation("Deleting user with id {ListingId}", id);
@@ -82,7 +82,7 @@ public class UserService : IUserService
         _logger.LogInformation("Deleted user with id {UserId}", id);
         return true;
     }
-    
+
     private static UserDto MapToDto(UserEntity user) => new()
     {
         Id = user.Id,
