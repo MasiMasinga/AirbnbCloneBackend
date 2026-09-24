@@ -99,3 +99,22 @@ appsettings.*.local.json
 *~
 .local/
 node_modules/
+
+# Secrets / local config
+.env
+.env.*
+!.env.example
+
+# Application settings
+**/settings.json
+**/appsettings.json
+**/appsettings.Development.json
+
+# Local settings
+**/appsettings.*.local.json
+**/secrets.json
+
+# Certificates / keys
+*.pfx
+*.key
+*.pem
