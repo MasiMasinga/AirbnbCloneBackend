@@ -123,6 +123,7 @@ public class ListingService : IListingService
         _logger.LogInformation("Deleted listing with id {ListingId}", id);
         return true;
     }
+    
     private static ListingDto MapToDto(ListingEntity listing) => new()
     {
         Id = listing.Id,
