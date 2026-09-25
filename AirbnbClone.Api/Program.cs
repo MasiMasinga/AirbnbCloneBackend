@@ -20,6 +20,9 @@ using Microsoft.OpenApi;
 using AirbnbClone.Application.Features.Review.Validators;
 using AirbnbClone.Application.Features.Review.Interfaces;
 using AirbnbClone.Application.Features.Review.Services;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -86,7 +89,34 @@ builder.Services.AddValidatorsFromAssemblyContaining<CreateReviewValidator>();
 
 builder.Services.AddOpenApi();
 
+builder.Services.AddHealthChecks()
+    .AddNpgSql(
+        connectionString: builder.Configuration.GetConnectionString("DefaultConnection")!,
+        name: "postgresql",
+        failureStatus: HealthStatus.Unhealthy,
+        tags: new[] { "db", "postgres" });
+
+
 var app = builder.Build();
+
+app.MapHealthChecks("/health", new HealthCheckOptions
+{
+    ResponseWriter = async (context, report) =>
+    {
+        context.Response.ContentType = "application/json";
+        var result = JsonSerializer.Serialize(new
+        {
+            status = report.Status.ToString(),
+            checks = report.Entries.Select(e => new
+            {
+                name = e.Key,
+                status = e.Value.Status.ToString(),
+                error = e.Value.Exception?.Message
+            })
+        });
+        await context.Response.WriteAsync(result);
+    }
+});
 
 app.MapGet("/", () => "🚀 Airbnb Clone Backend is running!");
 
