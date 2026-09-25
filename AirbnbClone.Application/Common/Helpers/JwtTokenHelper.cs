@@ -11,12 +11,8 @@ public class JwtTokenHelper
 {
     public static string GenerateJwtAccessToken(IConfiguration configuration, User user)
     {
-        var issuer = configuration["Jwt:Issuer"];
-        var audience = configuration["Jwt:Audience"];
-        var key = configuration["Jwt:Key"];
         var expiresMinutesStr = configuration["Jwt:ExpiresMinutes"];
-
-        var expiresMinutes = 120;
+        var expiresMinutes = 10080;
         if (int.TryParse(expiresMinutesStr, out var parsed) && parsed > 0)
         {
             expiresMinutes = parsed;
@@ -32,12 +28,12 @@ public class JwtTokenHelper
             new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
 
-        var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+        var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));
         var creds = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
 
         var token = new JwtSecurityToken(
-            issuer: string.IsNullOrWhiteSpace(issuer) ? null : issuer,
-            audience: string.IsNullOrWhiteSpace(audience) ? null : audience,
+            issuer: configuration["Jwt:Issuer"],
+            audience: configuration["Jwt:Audience"],
             claims: claims,
             notBefore: DateTime.UtcNow,
             expires: DateTime.UtcNow.AddMinutes(expiresMinutes),
