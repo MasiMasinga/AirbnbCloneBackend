@@ -28,29 +28,13 @@ public class BookingService : IBookingService
             return null;
         }
 
-        return new BookingDto
-        {
-            Id = booking.Id,
-            ListingId = booking.ListingId,
-            UserId = booking.UserId,
-            StartDate = booking.StartDate,
-            EndDate = booking.EndDate,
-            Amount = booking.Amount
-        };
+        return MapToDto(booking);
     }
 
     public async Task<IEnumerable<BookingDto>> GetAllBookings(CancellationToken ct = default)
     {
         var bookings = await _bookingRepository.GetAllAsync(ct);
-        return bookings.Select(booking => new BookingDto
-        {
-            Id = booking.Id,
-            ListingId = booking.ListingId,
-            UserId = booking.UserId,
-            StartDate = booking.StartDate,
-            EndDate = booking.EndDate,
-            Amount = booking.Amount
-        });
+        return bookings.Select(MapToDto);
     }
 
     public async Task<BookingDto> CreateBooking(CreateBookingDto dto, CancellationToken ct = default)
@@ -61,21 +45,14 @@ public class BookingService : IBookingService
             UserId = dto.UserId,
             StartDate = dto.StartDate,
             EndDate = dto.EndDate,
-            Amount = dto.Amount
+            Amount = dto.Amount,
+            NumberOfGuests = dto.NumberOfGuests,
         };
 
         var bookingId = await _bookingRepository.CreateAsync(booking, ct);
         booking.Id = bookingId;
 
-        return new BookingDto
-        {
-            Id = booking.Id,
-            ListingId = booking.ListingId,
-            UserId = booking.UserId,
-            StartDate = booking.StartDate,
-            EndDate = booking.EndDate,
-            Amount = booking.Amount
-        };
+        return MapToDto(booking);
     }
 
     public async Task<BookingDto?> UpdateBooking(int id, UpdateBookingDto dto, CancellationToken ct = default)
@@ -96,16 +73,7 @@ public class BookingService : IBookingService
 
         await _bookingRepository.UpdateAsync(existingBooking, ct);
 
-        return new BookingDto
-        {
-            Id = existingBooking.Id,
-            ListingId = existingBooking.ListingId,
-            UserId = existingBooking.UserId,
-            StartDate = existingBooking.StartDate,
-            EndDate = existingBooking.EndDate,
-            Amount = existingBooking.Amount,
-            NumberOfGuests = existingBooking.NumberOfGuests
-        };
+        return MapToDto(existingBooking);
     }
 
     public async Task<bool> DeleteBooking(int id, CancellationToken ct = default)
@@ -120,4 +88,15 @@ public class BookingService : IBookingService
         await _bookingRepository.DeleteAsync(id, ct);
         return true;
     }
+
+    private static BookingDto MapToDto(BookingEntity booking) => new()
+    {
+        Id = booking.Id,
+        ListingId = booking.ListingId,
+        UserId = booking.UserId,
+        StartDate = booking.StartDate,
+        EndDate = booking.EndDate,
+        Amount = booking.Amount,
+        NumberOfGuests = booking.NumberOfGuests,
+    };
 }
