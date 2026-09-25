@@ -17,6 +17,9 @@ using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
+using AirbnbClone.Application.Features.Review.Validators;
+using AirbnbClone.Application.Features.Review.Interfaces;
+using AirbnbClone.Application.Features.Review.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -72,12 +75,14 @@ builder.Services.AddScoped<IListingService, ListingService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<IReviewService, ReviewService>();
 
 builder.Services.AddValidatorsFromAssemblyContaining<CreateListingValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateUserValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<LoginUserValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateBookingValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<UpdateBookingValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateReviewValidator>();
 
 builder.Services.AddOpenApi();
 

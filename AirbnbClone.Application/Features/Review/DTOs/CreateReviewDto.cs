@@ -1,6 +1,6 @@
-namespace AirbnbClone.Domain.Entities;
+namespace AirbnbClone.Application.Features.Review.DTOs;
 
-public class Review
+public class CreateReviewDto
 {
     public int Id { get; set; }
     public Guid UserId { get; set; }
